@@ -3,7 +3,9 @@
 ### Arquitecturas de Software - ARSW
 ## Ejercicio Introducción al paralelismo - Hilos - Caso BlackListSearch
 
-sa
+## Autores
+- Karol Ximena Rodriguez Reyes
+- Juan David Moreno D'Aleman
 
 ### Dependencias:
 ####   Lecturas:
