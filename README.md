@@ -25,6 +25,8 @@
 	3. Ejecute y revise la salida por pantalla. 
 	4. Cambie el incio con 'start()' por 'run()'. Cómo cambia la salida?, por qué?.
 
+    **RESPUESTA**: al usar `run()`, lo que hace es que los hilos se van ejecutando uno por uno, en vez de todos a la vez, por lo que la salida sera de manera lineal, es decir, todos los intervalos saldrán en orden, a diferencia de `start()` que ejecuta todos los hilos a la vez en segundo plano, lo que hace que se colisionen las salidas entre si.
+
 **Parte II - Ejercicio Black List Search**
 
 
