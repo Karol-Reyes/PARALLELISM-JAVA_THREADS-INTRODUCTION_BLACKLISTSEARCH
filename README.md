@@ -3,6 +3,9 @@
 ### Arquitecturas de Software - ARSW
 ## Ejercicio Introducción al paralelismo - Hilos - Caso BlackListSearch
 
+## Autores
+- Karol Ximena Rodriguez Reyes
+- Juan David Moreno D'Aleman
 
 ### Dependencias:
 ####   Lecturas:
@@ -21,6 +24,8 @@
 	2. Inicie los tres hilos con 'start()'.
 	3. Ejecute y revise la salida por pantalla. 
 	4. Cambie el incio con 'start()' por 'run()'. Cómo cambia la salida?, por qué?.
+
+    **RESPUESTA**: al usar `run()`, lo que hace es que los hilos se van ejecutando uno por uno, en vez de todos a la vez, por lo que la salida sera de manera lineal, es decir, todos los intervalos saldrán en orden, a diferencia de `start()` que ejecuta todos los hilos a la vez en segundo plano, lo que hace que se colisionen las salidas entre si.
 
 **Parte II - Ejercicio Black List Search**
 
@@ -61,6 +66,18 @@ Para 'refactorizar' este código, y hacer que explote la capacidad multi-núcleo
 
 La estrategia de paralelismo antes implementada es ineficiente en ciertos casos, pues la búsqueda se sigue realizando aún cuando los N hilos (en su conjunto) ya hayan encontrado el número mínimo de ocurrencias requeridas para reportar al servidor como malicioso. Cómo se podría modificar la implementación para minimizar el número de consultas en estos casos?, qué elemento nuevo traería esto al problema?
 
+**RESPUESTA: Modificación** 
+
+Para modificarlo, se necesitaría utilizar un contador compartido para todos los hilos existentes, este contador se encargará de llevar la suma total de las ocurrencias encontradas hasta el momento, con ello, cada hilo antes de revisar cada lista negra, consultaría este contador, si ya alcanzo el *Máximo de ocurrencias*, el hilo detendrá la busqueda inmediatamente, aunque falten listas por revisar, con ello se evitaría las consultas innecesarias.
+
+**Nuevo Elemento**
+
+Por el momento, los hilos solo comparten los resultados al final con el *join()*, entonces no hay riesgo de choque entre hilos. Con este contador compartido y modificado mientras los hilos siguen corriendo, ahora tendríamos el problema de **"Concurrencia sobre memoria compartida"**, que es donde varios hilos leen y escriben una variable al tiempo que puede generar una condicion de carrera.
+
+Para ello, la modificación tendría que utilizar mecanismos de sincronización (tal como: *synchronized, volatile o AtomicInteger*) para que el acceso al contador de forma compartida sea ahora completamente seguro.
+
+---
+
 **Parte III - Evaluación de Desempeño**
 
 A partir de lo anterior, implemente la siguiente secuencia de experimentos para realizar las validación de direcciones IP dispersas (por ejemplo 202.24.34.55), tomando los tiempos de ejecución de los mismos (asegúrese de hacerlos en la misma máquina):
@@ -75,6 +92,9 @@ Al iniciar el programa ejecute el monitor jVisualVM, y a medida que corran las p
 
 Con lo anterior, y con los tiempos de ejecución dados, haga una gráfica de tiempo de solución vs. número de hilos. Analice y plantee hipótesis con su compañero para las siguientes preguntas (puede tener en cuenta lo reportado por jVisualVM):
 
+[Respuesta aqui](/src/main/resources/PerformanceEvaluation.md)
+
+
 **Parte IV - Ejercicio Black List Search**
 
 1. Según la [ley de Amdahls](https://www.pugetsystems.com/labs/articles/Estimating-CPU-Performance-using-Amdahls-Law-619/#WhatisAmdahlsLaw?):
@@ -85,5 +105,5 @@ Con lo anterior, y con los tiempos de ejecución dados, haga una gráfica de tie
 
 3. De acuerdo con lo anterior, si para este problema en lugar de 100 hilos en una sola CPU se pudiera usar 1 hilo en cada una de 100 máquinas hipotéticas, la ley de Amdahls se aplicaría mejor?. Si en lugar de esto se usaran c hilos en 100/c máquinas distribuidas (siendo c es el número de núcleos de dichas máquinas), se mejoraría?. Explique su respuesta.
 
-
+[Respuesta aqui](/src/main/resources/BlackListSearch.md)
 
