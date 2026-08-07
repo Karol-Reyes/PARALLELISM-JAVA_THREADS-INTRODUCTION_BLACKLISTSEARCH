@@ -66,6 +66,18 @@ Para 'refactorizar' este código, y hacer que explote la capacidad multi-núcleo
 
 La estrategia de paralelismo antes implementada es ineficiente en ciertos casos, pues la búsqueda se sigue realizando aún cuando los N hilos (en su conjunto) ya hayan encontrado el número mínimo de ocurrencias requeridas para reportar al servidor como malicioso. Cómo se podría modificar la implementación para minimizar el número de consultas en estos casos?, qué elemento nuevo traería esto al problema?
 
+**RESPUESTA: Modificación** 
+
+Para modificarlo, se necesitaría utilizar un contador compartido para todos los hilos existentes, este contador se encargará de llevar la suma total de las ocurrencias encontradas hasta el momento, con ello, cada hilo antes de revisar cada lista negra, consultaría este contador, si ya alcanzo el *Máximo de ocurrencias*, el hilo detendrá la busqueda inmediatamente, aunque falten listas por revisar, con ello se evitaría las consultas innecesarias.
+
+**Nuevo Elemento**
+
+Por el momento, los hilos solo comparten los resultados al final con el *join()*, entonces no hay riesgo de choque entre hilos. Con este contador compartido y modificado mientras los hilos siguen corriendo, ahora tendríamos el problema de **"Concurrencia sobre memoria compartida"**, que es donde varios hilos leen y escriben una variable al tiempo que puede generar una condicion de carrera.
+
+Para ello, la modificación tendría que utilizar mecanismos de sincronización (tal como: *synchronized, volatile o AtomicInteger*) para que el acceso al contador de forma compartida sea ahora completamente seguro.
+
+---
+
 **Parte III - Evaluación de Desempeño**
 
 A partir de lo anterior, implemente la siguiente secuencia de experimentos para realizar las validación de direcciones IP dispersas (por ejemplo 202.24.34.55), tomando los tiempos de ejecución de los mismos (asegúrese de hacerlos en la misma máquina):

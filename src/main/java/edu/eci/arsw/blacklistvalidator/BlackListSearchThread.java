@@ -2,7 +2,6 @@ package edu.eci.arsw.blacklistvalidator;
 
 import edu.eci.arsw.spamkeywordsdatasource.HostBlacklistsDataSourceFacade;
 import java.util.LinkedList;
-import java.util.List;
 
 public class BlackListSearchThread extends Thread {
     private int start;
@@ -34,6 +33,7 @@ public class BlackListSearchThread extends Thread {
 
     public void run() {
         for (int i = start; i < end; i++) {
+            // Check if the shared count has reached the alarm count
             if (sharedCount[0] >= alarmCount) {
                 break;
             }
