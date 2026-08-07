@@ -16,13 +16,13 @@ con el fin de comenzar con la ejecución de un solo hilo, desde nuestra terminar
 
 el resultado obtenido en la terminal es el siguiente:
 
-![UnHilo](img/UnHilo.png)
+![UnHilo](../../../img/UnHilo.png)
 
 donde obtenemos que con *1 solo hilo*, el tiempo de ejecución fue de *373287 ms, es decir, un aproximado de 6,22 minutos*
 
 y el resultado mostrado por jVisualVM es el siguiente:
 
-![UsoUnHilo](img/UnHiloUsage.png)
+![UsoUnHilo](../../../img/UnHiloUsage.png)
 
 donde obtenemos:
 - consumo (max) de CPU: 1.1%
@@ -40,13 +40,13 @@ No le ingresamos el numero específico de hilos ya que para eso estamos utilizan
 
 el resultado obtenido en la terminal es el siguiente:
 
-![16Hilos](img/16Hilos.png)
+![16Hilos](../../../img/16Hilos.png)
 
 donde obtenemos que con *16 hilos* (cantidad de nucleos de la máquina), el tiempo de ejecución fue de *14965 ms, es decir, un aproximado de 0,25 minutos*
 
 y el resultado mostrado por jVisualVM es el siguiente:
 
-![Uso16Hilos](img/16HilosUsage.png)
+![Uso16Hilos](../../../img/16HilosUsage.png)
 
 donde obtenemos:
 - consumo (max) de CPU: 1.0%
@@ -62,13 +62,13 @@ con el fin de comenzar con la ejecución del doble de hilos que el punto pasado 
 
 el resultado obtenido en la terminal es el siguiente:
 
-![32Hilos](img/32Hilos.png)
+![32Hilos](../../../img/32Hilos.png)
 
 donde obtenemos que con *32 hilos* ( doble de cantidad de nucleos de la máquina), el tiempo de ejecución fue de *6372 ms, es decir, un aproximado de 0,11 minutos*
 
 y el resultado mostrado por jVisualVM es el siguiente:
 
-![Uso32Hilos](img/32HilosUsage.png)
+![Uso32Hilos](../../../img/32HilosUsage.png)
 
 donde obtenemos:
 - consumo (max) de CPU: numero negativo, es decir, el tiempo de ejecución fue demasiado rápido y jVisualVM no pudo calcularlo
@@ -84,13 +84,13 @@ con el fin de comenzar con la ejecución de 50 hilos, desde nuestra terminar rea
 
 el resultado obtenido en la terminal es el siguiente:
 
-![50Hilos](img/50Hilos.png)
+![50Hilos](../../../img/50Hilos.png)
 
 donde obtenemos que con *50 hilos*, el tiempo de ejecución fue de *2001 ms, es decir, un aproximado de 0,034 minutos*
 
 y el resultado mostrado por jVisualVM es el siguiente:
 
-![Uso50Hilos](img/50HilosUsage.png)
+![Uso50Hilos](../../../img/50HilosUsage.png)
 
 donde obtenemos:
 - consumo (max) de CPU: número muy pequeño (negativo) para calcularlo, dato no disponible
@@ -106,13 +106,13 @@ con el fin de comenzar con la ejecución de 100 hilos, desde nuestra terminar re
 
 el resultado obtenido en la terminal es el siguiente:
 
-![100Hilos](img/100Hilos.png)
+![100Hilos](../../../img/100Hilos.png)
 
 donde obtenemos que con *100 hilos*, el tiempo de ejecución fue de *1052 ms, es decir, un aproximado de 0,018 minutos*
 
 y el resultado mostrado por jVisualVM es el siguiente:
 
-![Uso100Hilos](img/100HilosUsage.png)
+![Uso100Hilos](../../../img/100HilosUsage.png)
 
 donde obtenemos:
 - consumo (max) de CPU: número muy pequeño (negativo) para calcularlo, dato no disponible
@@ -122,7 +122,7 @@ donde obtenemos:
 
 A continuación, se muestra la gráfica obtenida de los resultados expuestos anteriormente en la ejecución del programa:
 
-![Gráfica](img/Grafica.png)
+![Gráfica](../../../img/Grafica.png)
 
 Como podemos observar, la curva muestra un decrecimiento no lineal (en un ajuste potencial, R^2=0,9999): el tiempo cae drásticamente de 1 a 16 hilos (de 373s a 15s), porque ahí el paralelismo aprovecha de núcleos reales disponibles. 
 
